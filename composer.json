@@ -1,0 +1,21 @@
+{
+  "name": "pandelix/upush",
+  "type": "library",
+  "description": "www.umeng.com",
+  "authors": [
+    {
+      "name": "lyd",
+      "email": "pandelyd@sina.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.40 | ^7.0",
+    "guzzlehttp/guzzle": "^6.3|^7.0",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "UPush\\": "./src/"
+    }
+  }
+}
