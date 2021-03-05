@@ -111,8 +111,7 @@ class Client
                 $this->setCommonContent($android, $type, $data);
                 $android->setPredefinedKeyValue('after_open', 'go_app');
                 if ($this->get_json) {
-                    echo $android->getJson();
-                    exit;
+                    return $android->getJson();
                 }
                 $android->send();
             }
@@ -120,14 +119,14 @@ class Client
                 $ios = new IOSBroadcast($this->common_keys['ios']);
                 $this->setCommonContent($ios, $type, $data);
                 if ($this->get_json) {
-                    echo $ios->getJson();
-                    exit;
+                    return $ios->getJson();
                 }
                 $ios->send();
             }
         } catch (\Exception $e) {
-            print($e->getMessage());
+            return $e->getMessage();
         }
+        return true;
     }
 
     public function sendListcast($device_tokens, $data, $type = 'notification')
@@ -148,8 +147,7 @@ class Client
                 $this->setCommonContent($android, $type, $data);
                 $android->setPredefinedKeyValue('after_open', 'go_app');
                 if ($this->get_json) {
-                    echo $android->getJson();
-                    exit;
+                    return $android->getJson();
                 }
                 $android->send();
             }
@@ -158,14 +156,14 @@ class Client
                 $ios->setPredefinedKeyValue('device_tokens', $device_tokens);
                 $this->setCommonContent($ios, $type, $data);
                 if ($this->get_json) {
-                    echo $ios->getJson();
-                    exit;
+                    return $ios->getJson();
                 }
                 $ios->send();
             }
         } catch (\Exception $e) {
-            print($e->getMessage());
+            return $e->getMessage();
         }
+        return true;
     }
 
     /*
@@ -180,8 +178,7 @@ class Client
                 $android->setPredefinedKeyValue('filter', $filter); //设置过滤条件
                 $android->setPredefinedKeyValue('after_open', 'go_app');
                 if ($this->get_json) {
-                    echo $android->getJson();
-                    exit;
+                    return $android->getJson();
                 }
                 $android->send();
             }
@@ -190,14 +187,14 @@ class Client
                 $this->setCommonContent($ios, $type, $data);
                 $ios->setPredefinedKeyValue('filter', $filter); //设置过滤条件
                 if ($this->get_json) {
-                    echo $ios->getJson();
-                    exit;
+                    return $ios->getJson();
                 }
                 $ios->send();
             }
         } catch (\Exception $e) {
-            print($e->getMessage());
+            return $e->getMessage();
         }
+        return true;
     }
 
 
@@ -210,8 +207,7 @@ class Client
                 $android->setPredefinedKeyValue('after_open', 'go_app');
                 $android->uploadContents($content);
                 if ($this->get_json) {
-                    echo $android->getJson();
-                    exit;
+                    return $android->getJson();
                 }
                 $android->send();
             }
@@ -220,14 +216,14 @@ class Client
                 $this->setCommonContent($ios, $type, $data);
                 $ios->uploadContents($content);
                 if ($this->get_json) {
-                    echo $ios->getJson();
-                    exit;
+                    return $ios->getJson();
                 }
                 $ios->send();
             }
         } catch (\Exception $e) {
-            print($e->getMessage());
+            return $e->getMessage();
         }
+        return true;
     }
 
 
