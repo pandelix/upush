@@ -1,13 +1,47 @@
-1.What's this?
-This is a demo code for php developers who choose Umeng to push notifications to their apps. For more infomation about Umeng, please refer to http://www.umeng.com/.
+# UPush API PHP Client
 
-2.What can I do with this demo?
-There's a 'src' sub-directory in which you can find a Demo.php. Yep, just fill in some fields in it and use php to run it. This code may be not the best, but it can work and help you develop fast at the beginning. Feel free to change the code, and we'll be much appreciated if you have any suggestion about the code.
+这是 UPush REST API 的 PHP 版本封装开发包。
 
-3.What do I need to run the demo?
-We write the code following the standard of PHP 5.0+, so PHP version under 5.0 should not be preferred. 
+对应的 REST API 文档: https://developer.umeng.com/docs/67966/detail/68343
 
-4.No step 4, just run it. 
+> 支持的 PHP 版本: 5.6.x, 7.x
 
-Notes:
-We build this project on Mac with Sublime Text 2, so sometimes it doesn't look beautiful when switching to other platforms such as Ubuntu. But it doesn't hurt much except the beauty. Forgive us for this, and we are sure to do better.
+## Installation
+
+#### 使用 Composer 安装
+
+- 在项目中的 `composer.json` 文件中添加 upush 依赖：
+
+```json
+"require": {
+    "pandelix/upush": "*"
+}
+```
+
+- 执行 `$ php composer.phar install` 或 `$ composer install` 进行安装。
+
+#### 初始化
+
+```php
+...
+use UPush\Client as Upush;
+...
+
+$app_infos = [
+    'android' => ['appkey' => 'xx', 'secret' => 'xx'],
+    'ios' => ['appkey' => 'xx', 'secret' => 'xx']
+];
+$client = new Upush($app_infos);
+$ret = $client->test()->sendListcast('xx,xx', ['custom' => 'xxxxx'], 'message');
+if ($ret === true) {
+    echo '发送成功' . PHP_EOL;
+} else {
+    echo $ret;
+}
+
+...
+```
+
+## License
+
+The library is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
