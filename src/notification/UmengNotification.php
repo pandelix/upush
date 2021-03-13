@@ -3,6 +3,7 @@
 namespace UPush\notification;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 use UPush\Exceptions\HttpException;
 use UPush\Exceptions\InvalidArgumentException;
 
@@ -78,7 +79,7 @@ abstract class UmengNotification
                 "body" => $postBody,
             ]);
             return json_decode($response->getBody()->getContents(), true);
-        } catch (\Exception $e) {
+        } catch (RequestException $e) {
             throw new HttpException($e->getMessage(), $e->getCode());
         }
     }
