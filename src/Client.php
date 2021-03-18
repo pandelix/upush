@@ -20,6 +20,8 @@ class Client
     private $common_keys = [];
     private $get_json = false;
     private $result = [];
+    private $receipt_url = '';
+    private $receipt_type = '';
 
     const EFFECTIVE_OS_VALUES = ['ios', 'android'];
 
@@ -78,6 +80,12 @@ class Client
         return $this;
     }
 
+    public function setReceipt($url, $type = '')
+    {
+        $this->receipt_url = $url;
+        $this->receipt_type = $type;
+    }
+
     private function setCommonContent(UmengNotification $plt, $data, $type = '')
     {
         if (empty($this->os)) {
@@ -103,6 +111,12 @@ class Client
             $plt->setPredefinedKeyValue('content-available', intval($type == 'message'));
         }
         $plt->setPredefinedKeyValue('production_mode', $this->production_mode);
+        if ($this->receipt_url) {
+            $plt->setPredefinedKeyValue('receipt_url', $this->receipt_url);
+        }
+        if ($this->receipt_type) {
+            $plt->setPredefinedKeyValue('receipt_type', $this->receipt_type);
+        }
         return $plt;
     }
 
@@ -235,6 +249,5 @@ class Client
         }
         return true;
     }
-
 
 }
